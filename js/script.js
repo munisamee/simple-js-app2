@@ -18,14 +18,15 @@ let pokemonList = [
 }
 ]
 
+/** Here add for loop for all pokemons! */
 
 for (let i=0; i < pokemonList.length; i++){
-    if (pokemonList[i].height < 10 && pokemonList[i].height > 4) {
-        document.write(pokemonList[i].name + "Bulbasaur (height: 7)");
+    if (pokemonList[i].height < 10) {
+        document.write(pokemonList[i].name + "Bulbasaur (height: 7)", "<br");
         console.log(pokemonList[i].name + " Wow that's big")
     }else if (pokemonList[i].height < 6) {
-        document.write(pokemonList[i].name + "Pidgey (height: 3)");
+        document.write(pokemonList[i].name + "Pidgey (height: 3)", "<br>");
     }else {
-        document.write(pokemonList[i].name + "Pikachu (height: 4)");
+        document.write(pokemonList[i].name + "Pikachu (height: 4)", "<br>");
     }
 }
