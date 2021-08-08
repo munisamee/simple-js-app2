@@ -38,25 +38,10 @@ let pokemonRepository = (function() {
 
 /** Here add forEach instead of for loop for all pokemons! */
 
-pokemonList.forEach(function(pokemon) {
-    console.log(pokemonList[i].name + ' is' + pokemonList[i].height + ' inch' + pokemonList[i].type + ' ');
+pokemonRepository.add({name: "Jigglypuff", height: "1.08", type: "steel"});
+pokemonRepository.getAll().forEach((pokemon) => {
+    console.log("pokemon", pokemon);
 });
-
-if (pokemonList[i].height > 10) {
-    document.write(
-        pokemonList[i].name + "Bulbasaur (height: 7) Wow that's big", 
-        "<br"
-        );
-}else if (pokemonList[i].height < 6) {
-    document.write(pokemonList[i].name + "Pidgey (height: 3)", "<br>");
-}else {
-    document.write(pokemonList[i].name + "Pikachu (height: 4)", "<br>");
-}
-
-(function() {
-    console.log(pokemonList);
-}());
-
 
 
 
