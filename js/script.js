@@ -20,8 +20,9 @@ let pokemonList = [
 
 /** Here add for loop for all pokemons! */
 
-for (let i = 0; i < pokemonList.length; i++){
-    console.log("pokemonList", pokemonList[i].name);
+pokemonList.forEach(function(pokemon) {
+    console.log(pokemonList[i].name + ' is' + pokemonList[i].height + ' cm' + pokemonList[i].type + ' ');
+});
 
     if (pokemonList[i].height > 10) {
         document.write(
