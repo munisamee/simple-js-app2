@@ -24,3 +24,27 @@ pokemonList.forEach(function(pokemon) {
     console.log(pokemonList[i].name + ' is' + pokemonList[i].height + ' cm' + pokemonList[i].type + ' ');
 });
 
+
+function pokemonList() {
+    let pokemonList = {};
+}
+console.log(pokemonList);
+
+let pokemonRepository = (function () {
+    let pokemonList = [];
+
+    function add(pokemon) {
+        pokemonList.push(pokemon);
+    }
+
+    function getAll() {
+        return pokemonList;
+    }
+
+    return {
+        add: add,
+        getAll: getAll
+    };
+})();
+
+
