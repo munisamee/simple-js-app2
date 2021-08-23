@@ -51,7 +51,7 @@ let pokemonRepository = (function() {
             });
             button.innerText = pokemon.name;
             button.classList.add("button-class");
-            listpokeman.appendChild(button);
+            listpokemon.appendChild(button);
             pokemonList.appendChild(listpokemon);
         }
 
