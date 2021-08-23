@@ -1,7 +1,7 @@
 /** Add new pokemon repository here */
 
 let pokemonRepository = (function() {
-    let repository = [
+    let pokemonList = [
             {
                 name: "bulbasaur", 
                 height: "0.7", 
@@ -20,6 +20,9 @@ let pokemonRepository = (function() {
                 type: "electric",
             }
         ];
+
+        let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+
         function add(pokemon) {
             if (
                 typeof pokemon === "object" &&
@@ -27,14 +30,14 @@ let pokemonRepository = (function() {
                 "height" in pokemon &&
                 "types" in pokemon
             ) {
-                repository.push(pokemon);
+                pokemonList.push(pokemon);
             }else {
                 console.log("pokemon is not correct");
             }
         }
     
         function getAll(pokemon) {
-            return repository;
+            return pokemonList;
         }
 
         /** Here add addListItem */
@@ -55,6 +58,24 @@ let pokemonRepository = (function() {
             pokemonList.appendChild(listpokemon);
         }
 
+        /**Function LoadList here */
+
+        function loadList() {
+            return fetch(apiURl).then(function (response) {
+                return response.json();
+            }).then(function (json) {
+                json.result.forEach(function (item) {
+                    let pokemon = {
+                        name: item.name,
+                        detailsUrl: item.url
+                    };
+                    add(pokemon);
+                });
+            }).catch(function (e) {
+                console.error(e);
+            })
+        }
+
         /** Here add showDetails function */
         function showDetails (pokemon) {
             console.log(pokemon);
@@ -65,7 +86,8 @@ let pokemonRepository = (function() {
         return {
             add: add,
             getAll: getAll,
-            addListItem: addListItem
+            addListItem: addListItem,
+            loadList: loadList
         };
     })();
     
@@ -78,9 +100,14 @@ let pokemonRepository = (function() {
 console.log(pokemonRepository.getAll());
 
 
-pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(function() {
+    pokemonRepository.getAll().forEach(function (pokemon) {
+        pokemonRepository.addListItem(pokemon);
+   });
 });
+
+
+
 
 
 
