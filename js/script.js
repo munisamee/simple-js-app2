@@ -1,7 +1,7 @@
 /** Add new pokemon repository here */
 
 let pokemonRepository = (function() {
-    let pokemonList = [
+    let repository = [
             {
                 name: "bulbasaur", 
                 height: "0.7", 
@@ -27,14 +27,14 @@ let pokemonRepository = (function() {
                 "height" in pokemon &&
                 "types" in pokemon
             ) {
-                pokemonList.push(pokemon);
+                repository.push(pokemon);
             }else {
                 console.log("pokemon is not correct");
             }
         }
     
         function getAll(pokemon) {
-            return pokemonList;
+            return repository;
         }
 
         /** Here add addListItem */
