@@ -1,10 +1,39 @@
 /** Add new pokemon repository here */
 
 let pokemonRepository = (function() {
+    let modalContainer = document.querySelector
+    ('#modal-container');
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-        function add(pokemon) {
+/**HERE SHOW MODAL */
+
+    function showModal(title, height) {
+        modalContainer.innerHTML = '';
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+    }
+
+    let closeButtonElement = document.createElement
+    ('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);
+
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+
+    let contentElement = document.createElement('p');
+    contentElement.innerText = text;
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modalContainer.appendChild(modal);
+
+    modalContainder.classList.add('is-visible');
+
+    function add(pokemon) {
             if (
                 typeof pokemon === "object" &&
                 "name" in pokemon
@@ -33,6 +62,34 @@ let pokemonRepository = (function() {
                  showDetails(pokemon);
             });
         }
+
+        /**HIDE MODAL & EVENT LISTENER*/
+
+        function hideModal() {
+            modalContainer.classList.remove('is-visible');
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' &&
+            modalContainer.classList.contains('is-visible'))
+            {
+                hideModal();
+            }
+        });
+        modalContainer.addEventListener('click', (e) => {
+            let target = e.target;
+            if (target === modalContainer) {
+                hideModal();
+            }
+        });
+
+        /**DOCUMENT QUERY */
+
+        document.querySelector('#show-modal')
+        .addEventListener('click', () => {
+            showModal('Modal title', 'Hieght');
+        });
+
        /**Function LoadList here */
 
         function loadList() {
