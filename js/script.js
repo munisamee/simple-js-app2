@@ -94,7 +94,7 @@ pokemonRepository.getAll().forEach(function
 
     let modalContainer = document.querySelector
     ('#modal-container');
-    function showModal(title, text) {
+    function showModal(name, height) {
         modalContainer.innerHTML = '';
         let modal = document.createElement('div');
         modal.classList.add('modal');
