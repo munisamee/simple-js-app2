@@ -20,15 +20,20 @@ let pokemonRepository = (function() {
     }
 
     function addListItem(pokemon) {
-        let pokemonList = document.querySelector 
-        (".pokemon-list");
-        let listpokemon = document.createElement("li");
-        let button = document.createElement("button");
+        let pokemonUList = document.querySelector 
+        ('.list-group');
+        let listpokemonListItem = document.createElement('li');
+        pokemonListItem.classList.add('group-list-item');
+        let button = document.createElement('button');
         button.innerText = pokemon.name;
-        button.classList.add("button-class");
-        listpokemon.appendChild(button);
-        pokemonList.appendChild(listpokemon);
-        button.addEventListener("click", function (event) 
+        button.classList.add('btn', 'btn-primary', 'btn-lg', 'btn-block');
+
+        button.setAttribute('data-target', '#pokemonModal');
+        button.setAttribute('data-toggle', 'modal');
+
+        pokemonListItem.appendChild(button);
+        pokemonUList.appendChild(pokemonListItem);
+        button.addEventListener('click', function () 
          {
              showDetails(pokemon);
         });
@@ -45,11 +50,16 @@ let pokemonRepository = (function() {
                     detailsUrl: item.url
                 };
                 add(pokemon);
-                console.log(pokemon);
             });
         }).catch(function (e) {
             console.error(e);
         })
+    }
+
+    function showDetails(pokemon) {
+        loadDetails(pokemon).then(function () {
+            showModal(pokemon);
+        });
     }
 
     /** Here add loadDetails function */
@@ -58,21 +68,16 @@ let pokemonRepository = (function() {
         return fetch(url).then(function (response) {
             return response.json();
         }).then(function (details) {
-            item.imageUrl = details.sprites.front_default;
+            item.id = details.id;
+            item.imageUrl = details.sprites.other.dream_world.front_default;
             item.height = details.height;
+            item.weight = details.weight;
             item.types = details.types;
+            item.abilities = details.abilities;
         }).catch(function (e) {
             console.error(e);
         });
     }
-
-    function showDetails(item) {
-        pokemonRepository.loadDetails(item).then
-        (function () {
-            console.log(item);
-        });
-    }
-
     
     return {
         add: add,
