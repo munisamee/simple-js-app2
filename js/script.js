@@ -164,14 +164,14 @@ pokemonRepository.getAll().forEach(function
             })
         }
 
-        document.querySelector('#show-dialog')
-        .addEventListener('click', () => {
-            showDialog('Confirm action', 'Are you sure you want to do this?').then(function() {
-                alert('confirm!');
-            },() => {
-                alert('not confirmed');
-            });
-        });
+        // document.querySelector('#show-dialog')
+        // .addEventListener('click', () => {
+        //     showDialog('Confirm action', 'Are you sure you want to do this?').then(function() {
+        //         alert('confirm!');
+        //     },() => {
+        //         alert('not confirmed');
+        //     });
+        // });
 
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' &&
