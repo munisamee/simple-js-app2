@@ -188,61 +188,62 @@ let pokemonRepository = (function() {
         return `${types[0].type.name}`;
     } 
     
-//     function convertHeight(height) {
-//         // convert height to feet w/ decimal
-//         height = ((height / 10) * 3.28).toFixed(2);
-//         // separate out the decimal and convert to inches
-//         let whole = Math.floor(height);
-//         let dec = Math.round((height - whole) * 12);
+    function convertHeight(height) {
+        // convert height to feet w/ decimal
+        height = ((height / 10) * 3.28).toFixed(2);
+        // separate out the decimal and convert to inches
+        let whole = Math.floor(height);
+        let dec = Math.round((height - whole) * 12);
 
-//         dec = String(dec).padStart(2, '0');
-//         let returnString = ``;
-//         // round up inches to the next foot
-//         returnString = dec === '12' ? `${whole + 1}' 00"` : `${whole}' ${dec}"`;
+        dec = String(dec).padStart(2, '0');
+        let returnString = ``;
+        // round up inches to the next foot
+        returnString = dec === '12' ? `${whole + 1}' 00"` : `${whole}' ${dec}"`;
 
-//         return returnString;
-//     }
+        return returnString;
+    }
 
-//     function convertWeight(weight) {
-//         weight = ((weight / 10) * 2.2).toFixed(1);
-//         return weight % 1 === 0 ? Math.floor(weight) : weight;
-//     }
+    function convertWeight(weight) {
+        weight = ((weight / 10) * 2.2).toFixed(1);
+        return weight % 1 === 0 ? Math.floor(weight) : weight;
+    }
 
-//     // Diplays pokemon based on the search bar input
-//     let pokeSearchBar = document.querySelector('#filter');
-//     pokeSearchBar.addEventListener('input', () => {
-//         let pokeListItem = document.querySelectorAll('li');
-//         let filter = pokeSearchBar.value.toUpperCase();
+    // Diplays pokemon based on the search bar input
+    let pokeSearchBar = document.querySelector('#filter');
+    pokeSearchBar.addEventListener('input', () => {
+        let pokeListItem = document.querySelectorAll('li');
+        let filter = pokeSearchBar.value.toUpperCase();
 
-//         pokeListItem.forEach((listItem) => {
-//             if (listItem.innerText.toUpperCase().indexOf(filter) > -1) {
-//                 listItem.style.display = '';
-//             } else {
-//                 listItem.style.display = 'none';
-//             }
-//         });
-//     });
+        pokeListItem.forEach((listItem) => {
+            if (listItem.innerText.toUpperCase().indexOf(filter) > -1) {
+                listItem.style.display = '';
+            } else {
+                listItem.style.display = 'none';
+            }
+        });
+    });
 
-//     return {
-//         add: add,
-//         getAll: getAll,
-//         loadList: loadList,
-//         addListItem: addListItem,
-//     };
-// });
+    return {
+        add: add,
+        getAll: getAll,
+        loadList: loadList,
+        addListItem: addListItem,
+    };
+});
 
-// let scrollButton = document.getElementById('btn-to-top');
-// scrollButton.addEventListener('click', toTop);
-// function toTop() {
-//     document.body.scrollTop = 0;
-//     document.documentElement.scrollTop = 0;
-// }
+let scrollButton = document.getElementById('btn-to-top');
+scrollButton.addEventListener('click', toTop);
+function toTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
 
-// pokemonRepository.loadList()
-//     .then(() => {
-//         pokemonRepository.getAll().forEach((pokemon) => pokemonRepository.addListItem(pokemon));
-//     })
-//     .catch((e) => console.error(`e`));
+pokemonRepository.loadList()
+    .then(() => {
+        pokemonRepository.getAll().forEach((pokemon) => pokemonRepository.addListItem(pokemon));
+    })
+    .catch((e) => console.error(`e`));
+    
 //     let pokemonUList = document.querySelector('.list-group');
 //         let pokemonListItem = document.createElement('li');
 //         pokemonListItem.classList.add('group-list-item');
