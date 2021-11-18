@@ -134,9 +134,9 @@ let pokemonRepository = (function() {
          height = convertHeight(height);
          weight = convertWeight(weight);
 
-         let typeNames = getTypesNames(types);
+         let typeNames = getTypeNames(types);
 
-         let modalTitle = document.querySelector(.'modal-title');
+         let modalTitle = document.querySelector('.modal-title');
          let modalBody = document.querySelector('.modal-body');
          //clear modal
          modalBody.innerHTML = '';
@@ -144,16 +144,16 @@ let pokemonRepository = (function() {
          modalTitle.innerText = name + `#${id}`;
 
          let contentEl = document.createElement('div');
-         contentEl.classList.add('pokemong-contect');
+         contentEl.classList.add('pokemon-content');
          contentEl.innerHTML = `<img src="${artUrl}" alt="${name}"/>`;
 
          let pokeInfoDiv = document.createElement('div');
          pokeInfoDiv.classList.add('pokemon-info');
          pokeInfoDiv.innerHTML = `
              <span class="height">Height: ${height}</span>
-             <span class="weight">Weight: ${weight}</span>
+             <span class="weight">Weight: ${weight} lbs</span>
          `;
-     }
+     
 
      /**creates individual spans for the types and adds the type name as a class to be targeted in the CSS */
 
@@ -177,13 +177,13 @@ let pokemonRepository = (function() {
         contentEl.appendChild(pokeInfoDiv);
         modalBody.appendChild(contentEl);
 
-    }
+    };
 
     //Modal formatiing
 
-    function getTypeNames(tyoes) {
-        if (types.length >1) {
-            return `${types[0].type.name}`;
+    function getTypeNames(types) {
+        if (types.length > 1) {
+            return `${types[0].type.name}, ${types[1].type.name}`;
         }
         return `${types[0].type.name}`;
     } 
