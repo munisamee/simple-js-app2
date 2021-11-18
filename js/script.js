@@ -56,8 +56,9 @@ let pokemonRepository = (function() {
 
     function loadList() {
         showLoadingMessage();
-        return fetch(apiUrl).then((response) => { return response.json() })
-        .then((json) => {
+        try {
+            const response = await fetch(apiUrl);
+            const json = await response.json();
             json.results.forEach((item) => {
                 let pokemon = {
                     name: item.name,
@@ -66,11 +67,10 @@ let pokemonRepository = (function() {
                 add(pokemon);
             });
             hideLoadingMessage();
-        })
-        .catch((e) => {
+        } catch (e) {
             console.error(e);
             hideLoadingMessage();
-        });
+        }
     }
 
     /**Link is called to get the spriteUrl. Then a list item containing a button which displays pokemon info */
@@ -99,7 +99,7 @@ let pokemonRepository = (function() {
 
 /**Function below serves to show details of pokemons which are retrieved from the spriteURl and they are displayed on the main list */
 
-   async function loadSprite(pokemon) {
+   function loadSprite(pokemon) {
        let res = await fetch(pokemon.detailsUrl);
        let resData = await res.json();
 
@@ -109,19 +109,19 @@ let pokemonRepository = (function() {
 
    /**More details about pokemon are fetched here */
 
-    function loadDetails(pokemon) {
+    async function loadDetails(pokemon) {
         let url = pokemon.detailsUrl;
-        return fetch(url).then((response) => { return response.json() })
-        .then((details) => {
+        try {
+            const response = await fetch(url);
+            const details = await response.json();
             pokemon.artUrl = details.sprites.other['official-artwork'].front_default;
             pokemon.id = details.id;
             pokemon.height = details.height;
             pokemon.weight = details.weight;
             pokemon.types = details.types;
-        })
-        .catch((e) => {
+        } catch (e) {
             console.error(e);
-        });
+        }
     }
 
     /**Modal popup is created when pokemon is clicked */
